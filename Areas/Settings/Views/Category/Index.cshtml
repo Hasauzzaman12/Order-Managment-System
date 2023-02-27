@@ -1,0 +1,48 @@
+﻿@model IEnumerable<OMS.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int Sl = 1;
+}
+
+<h3>Category List</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+</p>
+
+<table class="table table-bordered table-striped table-hover table-sm">
+    <thead>
+        <tr style="text-align:center">
+            <th>
+                SL. No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="text-align:center">
+                @(Sl++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+                <partial name="_PartialButtons" model="@item.CategoryId" />
+            
+        </tr>
+}
+    </tbody>
+</table>

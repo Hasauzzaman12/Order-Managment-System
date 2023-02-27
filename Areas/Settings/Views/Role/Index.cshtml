@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int Sl = 1;
+}
+
+
+<h3>Role List</h3>
+
+<p>
+    <a asp-action="Create" class="btn btn-success btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Create</a>
+</p>
+
+<table class="table table-bordered table-striped table-hover table-sm">
+    <thead>
+        <tr style="text-align:center">
+            <th>SL No.</th>
+            <th>
+                @Html.DisplayName("Role Name")
+            </th>
+            <th>Action</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Roles)
+        {
+        <tr>
+            <td style="text-align:center">@(Sl++)</td>
+            <td>
+               @item.Name
+            </td>
+
+                @*<partial name="_PartialButtons" model="@item.Id" />*@
+
+            <td class="d-flex justify-content-center">
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o" title="Edit" aria-hidden="true" style="font-size:20px; color:green"></i></a>
+                    &nbsp;
+                    <a asp-action="AssignRole" asp-route-id=""><i class="fa fa-cog" title="Assign Menu" aria-hidden="true" style="font-size:20px; color:green"></i></a>
+                    &nbsp;
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o" title="Delete" aria-hidden="true" style="font-size:20px; color:red"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

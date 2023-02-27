@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3>Delete Role</h3>
+
+<hr />
+<br />
+
+<div class="col-md-12">
+
+    <form asp-action="Delete" method="post" id="role-form" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div>@ViewBag.msg</div>
+
+        <input type="hidden" value="@ViewBag.Id" name="id" />
+
+        <div class="form-group row">
+            <label class="col-md-2">Role Name: <i class="fa fa-asterisk" aria-hidden="true" style="font-size:10px; color:red"></i></label>
+
+            <div class="col-md-5">
+                <input id="name" readonly name="name" value="@ViewBag.Name" required="required" class="form-control" />
+                @*<span asp-validation-for="Name" class="text-danger"></span>*@
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-danger btn-sm">Delete Role</button>
+                <a asp-action="Index" class="btn btn-info btn-sm">Back to List</a>
+            </div>
+        </div>
+    </form>
+
+</div>
+
