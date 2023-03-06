@@ -43,11 +43,6 @@
                 <input asp-for="ViewName" class="form-control" />
                 <span asp-validation-for="ViewName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ModuleImagePath" class="control-label"></label>
-                <input asp-for="ModuleImagePath" class="form-control" />
-                <span asp-validation-for="ModuleImagePath" class="text-danger"></span>
-            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
@@ -65,3 +60,8 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

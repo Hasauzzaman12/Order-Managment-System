@@ -14,12 +14,12 @@
 <table class="table table-bordered table-striped table-hover table-sm">
     <thead>
         <tr style="text-align:center">
-            <th>
-            </th>
+            <th>SL. No.</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>User Name</th>
             <th>Role Name</th>
+            <th>Action</th>
         </tr>
     </thead>
 
@@ -34,7 +34,11 @@
                 <td>@item.LastName</td>
                 <td>@item.UserName</td>
                 <td>@item.RoleName</td>
-
+                <td class="d-flex justify-content-center">
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-pencil-square-o" title="Edit" aria-hidden="true" style="font-size:20px; color:green"></i></a>
+                    &nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o" title="Delete" aria-hidden="true" style="font-size:20px; color:red"></i></a>
+                </td>
             </tr>
         }
     </tbody>

@@ -40,6 +40,7 @@ builder.Services.AddScoped<IOrderType,OrderTypeRepository>();
 builder.Services.AddScoped<IMainMenu,MainMenuRepository>();
 builder.Services.AddScoped<ISubMenu,SubMenuRepository>();
 
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(10);
@@ -72,7 +73,7 @@ app.UseSession();
 
 app.MapControllerRoute(
     name: "areas",
-      pattern: "{area=Settings}/{controller=Home}/{action=Index}/{id?}");
+      pattern: "{area=Settings}/{controller=Module}/{action=Landing}/{id?}");
 
 app.MapRazorPages();
 

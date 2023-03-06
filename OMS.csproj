@@ -25,6 +25,7 @@
     <Folder Include="Areas\Product\Controllers\" />
     <Folder Include="Areas\Product\Views\" />
     <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\Photo\" />
   </ItemGroup>
 
 </Project>

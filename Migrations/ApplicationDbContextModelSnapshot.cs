@@ -721,7 +721,7 @@ namespace OMS.Migrations
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ModuleImagePath")
+                    b.Property<string>("ModuleImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ModuleName")

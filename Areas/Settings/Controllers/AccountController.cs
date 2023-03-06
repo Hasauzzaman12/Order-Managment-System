@@ -31,7 +31,7 @@ namespace OMS.Areas.Settings.Controllers
                          join a in _context.ApplicationUsers on ur.UserId equals a.Id
                          select new ViewModels.UserViewModel()
                          {
-                             UserId = ur.UserId,
+                             Id = ur.UserId,
                              RoleId = ur.RoleId,
                              UserName = a.UserName,
                              FirstName = a.FirstName,
@@ -73,6 +73,7 @@ namespace OMS.Areas.Settings.Controllers
         }
         public async Task<IActionResult> Edit(string id)
         {
+            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
             var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
             if (user == null)
             {
@@ -91,17 +92,16 @@ namespace OMS.Areas.Settings.Controllers
             }
             userInfo.FirstName = user.FirstName;
             userInfo.LastName = user.LastName;
+
             var result = await _userManager.UpdateAsync(userInfo);
+
             if (result.Succeeded)
             {
-               
                 return RedirectToAction(nameof(Index));
             }
             return View(userInfo);
         }
-
-
-
+       
 
     }
 }

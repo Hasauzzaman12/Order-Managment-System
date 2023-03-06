@@ -43,9 +43,10 @@ namespace OMS.Models
         [MaxLength(250), MinLength(2)]
         public string? ViewName { get; set; }
 
+        
         [DisplayName("Module Image")]
-        public string? ModuleImagePath { get; set; }
-
+        public string? ModuleImageUrl { get; set; }
+        
         public ICollection<MainMenu>? MainMenus { get; set; }
     }
 }
