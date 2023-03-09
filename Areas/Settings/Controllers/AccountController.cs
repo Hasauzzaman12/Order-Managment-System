@@ -45,7 +45,7 @@ namespace OMS.Areas.Settings.Controllers
 
         public async Task<IActionResult> Create()
         {
-            ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
+            ViewData["RoleId"] = new SelectList( _roleManager.Roles.ToList(), "Name", "Name");
 
             return View();
         }
@@ -79,7 +79,7 @@ namespace OMS.Areas.Settings.Controllers
             {
                 return NotFound();
             }
-            return View(user);
+            return View(user);    
         }
 
         [HttpPost]

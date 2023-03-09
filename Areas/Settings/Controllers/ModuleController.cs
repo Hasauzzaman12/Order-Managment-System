@@ -27,15 +27,9 @@ namespace OMS.Areas.Settings.Controllers
             _he = he;
             
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Landing()
-        {
-            return View(await _module.GetAll());
-        }
         
         [HttpGet]
-        public async Task<IActionResult> Landingx()
+        public async Task<IActionResult> Landing()
         {
             return View(await _module.GetAll());
         }
