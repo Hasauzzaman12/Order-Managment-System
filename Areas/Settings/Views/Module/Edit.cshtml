@@ -34,15 +34,21 @@
                 <span asp-validation-for="AreaName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Controller" class="control-label"></label>
-                <input asp-for="Controller" class="form-control" />
-                <span asp-validation-for="Controller" class="text-danger"></span>
+                <label asp-for="ControllerName" class="control-label"></label>
+                <input asp-for="ControllerName" class="form-control" />
+                <span asp-validation-for="ControllerName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ViewName" class="control-label"></label>
                 <input asp-for="ViewName" class="form-control" />
                 <span asp-validation-for="ViewName" class="text-danger"></span>
             </div>
+
+            @*<div class="input-group mb-3">
+                <input type="file" class="form-control" name="ModuleImage">
+                <label class="input-group-text" for="ModuleImage">Upload</label>
+            </div>*@
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)

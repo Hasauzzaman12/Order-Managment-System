@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Fahad\**" />
+    <Compile Remove="wwwroot\Image3\**" />
+    <Content Remove="wwwroot\Fahad\**" />
+    <Content Remove="wwwroot\Image3\**" />
+    <EmbeddedResource Remove="wwwroot\Fahad\**" />
+    <EmbeddedResource Remove="wwwroot\Image3\**" />
+    <None Remove="wwwroot\Fahad\**" />
+    <None Remove="wwwroot\Image3\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Areas\Settings\Views\UoM\Index.cshtml~RF14b99b88.TMP" />
   </ItemGroup>
 
@@ -25,7 +36,7 @@
     <Folder Include="Areas\Product\Controllers\" />
     <Folder Include="Areas\Product\Views\" />
     <Folder Include="Controllers\" />
-    <Folder Include="wwwroot\Photo\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

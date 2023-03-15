@@ -40,7 +40,7 @@
     <div class="container">
         <div class="logoutright">
             <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Landing", "Module", new { area = "Settings" })">
-                <button type="submit" style="color:darkblue; border:none; background:none"><i class="fa fa-sign-out" title="Logout" aria-hidden="true"></i></button>
+                <button type="submit" style="color:darkblue; border:none; background:none"><i class="fa fa-sign-out" title="Logout" aria-hidden="true" style="font-size:18px;"></i></button>
             </form>
         </div>
     </div>
@@ -52,8 +52,8 @@
                 {
                     <div class="col-md-2 col-sm-6 col-xs-12 hover-effect">
                         <div class="h-100">
-                            <a asp-area="@module.AreaName" asp-action="@module.ViewName" asp-controller="@module.Controller"><img src="~/@module.ModuleImageUrl" alt="Card Image" width="161px" ; height="161px" /></a>
-                            <a asp-area="@module.AreaName" asp-action="@module.ViewName" asp-controller="@module.Controller"><p class="text-center fw-bold text-primary">@module.ModuleName</p></a>
+                            <a asp-area="@module.AreaName" asp-action="@module.ViewName" asp-controller="@module.ControllerName"><img src="~/@module.ImagePath" alt="Card Image" width="161px" ; height="161px" /></a>
+                            <a asp-area="@module.AreaName" asp-action="@module.ViewName" asp-controller="@module.ControllerName"><p class="text-center fw-bold text-primary">@module.ModuleName</p></a>
 
                         </div>
                     </div>

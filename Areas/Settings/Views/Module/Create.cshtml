@@ -4,13 +4,13 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Module</h1>
+<h3>Create Module</h3>
 
-<h4>@ViewBag.Mgs</h4>
+<p class="text-danger">@ViewBag.Message</p>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -18,6 +18,50 @@
                 <input asp-for="ModuleName" class="form-control" />
                 <span asp-validation-for="ModuleName" class="text-danger"></span>
             </div>
+            
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ModuleSerial" class="control-label"></label>
+                <input asp-for="ModuleSerial" class="form-control" type="number" />
+                <span asp-validation-for="ModuleSerial" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AreaName" class="control-label"></label>
+                <input asp-for="AreaName" class="form-control" />
+                <span asp-validation-for="AreaName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ControllerName" class="control-label"></label>
+                <input asp-for="ControllerName" class="form-control" />
+                <span asp-validation-for="ControllerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ViewName" class="control-label"></label>
+                <input asp-for="ViewName" class="form-control" />
+                <span asp-validation-for="ViewName" class="text-danger"></span>
+            </div>
+
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" name="ModuleImage">
+                <label class="input-group-text" for="ModuleImage">Upload</label>
+            </div>
+
+
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

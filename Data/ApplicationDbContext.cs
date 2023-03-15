@@ -36,6 +36,7 @@ namespace OMS.Data
         public DbSet<MainMenu> MainMenus { get; set; }
         public DbSet<SubMenu> SubMenus { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+      
 
 
 

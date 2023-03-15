@@ -46,12 +46,12 @@ namespace OMS.Areas.Settings.Controllers
                 {
                     var name = Path.Combine(_he.WebRootPath + "/Images", Path.GetFileName(image.FileName));
                     await image.CopyToAsync(new FileStream(name, FileMode.Create));
-                     module.ModuleImageUrl= "Images/" + image.FileName;
+                     //module.ModuleImageUrl= "Images/" + image.FileName;
                 }
 
                 if (image == null)
                 {
-                    module.ModuleImageUrl = "Images/noimage.PNG";
+                     //module.ModuleImageUrl = "Images/noimage.PNG";
                 }
                 _context.Modules.Add(module);
                 await _context.SaveChangesAsync();

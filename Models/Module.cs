@@ -33,20 +33,20 @@ namespace OMS.Models
         [MaxLength(100), MinLength(2)]
         public string? AreaName { get; set; }
 
-        [Required]
         [DisplayName("Controller Name")]
         [MaxLength(100), MinLength(2)]
-        public string? Controller { get; set; }
+        public string ControllerName { get; set; }
 
-        [Required]
         [DisplayName("View Name")]
         [MaxLength(250), MinLength(2)]
-        public string? ViewName { get; set; }
+        public string ViewName { get; set; }
 
-        
-        [DisplayName("Module Image")]
-        public string? ModuleImageUrl { get; set; }
-        
+        [NotMapped]
+        public IFormFile ModuleImage { get; set; }
+
+        [DisplayName("Image Path")]
+        public string? ImagePath { get; set; }
+
         public ICollection<MainMenu>? MainMenus { get; set; }
     }
 }
