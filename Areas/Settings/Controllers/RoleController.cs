@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OMS.Data;
+using OMS.Interface;
+using OMS.Models;
 
 namespace OMS.Areas.Settings.Controllers
 {
@@ -12,13 +14,26 @@ namespace OMS.Areas.Settings.Controllers
         private readonly ApplicationDbContext _context;
         RoleManager<IdentityRole> _roleManager;
         UserManager<IdentityUser> _userManager;
+        private readonly ISubMenu _subMenu;
+        private readonly IMenu _menu;
 
-        public RoleController(ApplicationDbContext context, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public RoleController(ApplicationDbContext context, IMenu menu, RoleManager<IdentityRole> roleManager, ISubMenu subMenu, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _roleManager = roleManager;
             _userManager = userManager;
+            _subMenu = subMenu;
+            _menu = menu;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AssignRole()
+        {
+          return View(await _menu.GetAll());
+        }
+
+        [HttpGet]
+
 
         [HttpGet]
         public IActionResult Index()

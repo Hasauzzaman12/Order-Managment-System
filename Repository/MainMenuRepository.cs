@@ -44,7 +44,7 @@ namespace OMS.Repository
 
         public async Task<IEnumerable<MainMenu>> GetAll()
         {
-            var data = await _context.MainMenus.Include(c => c.Module).ToListAsync();
+            var data = await _context.MainMenus.Include(c => c.Module).Include(c => c.SubMenus).Where(c=>c.IsActive==true).ToListAsync();
 
             return data;
         }
@@ -58,6 +58,16 @@ namespace OMS.Repository
         public async Task<MainMenu> GetByName(string? name)
         {
             var data = await _context.MainMenus.FirstOrDefaultAsync(c => c.MainMenuName == name);
+            return data;
+        }
+
+        public async Task<IEnumerable<MainMenu>> MenuList()
+        {
+            var data = await _context.MainMenus
+                .Include(c => c.Module)
+                .Include(c => c.SubMenus)
+                .ToListAsync();
+
             return data;
         }
     }

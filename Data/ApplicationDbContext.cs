@@ -33,12 +33,22 @@ namespace OMS.Data
         public DbSet<SalesPerson> SalesPersons { get; set; }
         public DbSet<UoM> UoMs { get; set; }
         public DbSet<Module> Modules { get; set; }
+        public DbSet<Menu> Menus { get; set; }
         public DbSet<MainMenu> MainMenus { get; set; }
         public DbSet<SubMenu> SubMenus { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-      
 
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            foreach (var item in modelBuilder.Model.GetEntityTypes().SelectMany(x => x.GetForeignKeys()))
+            {
+                item.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+        }
 
 
 
@@ -63,7 +73,7 @@ namespace OMS.Data
         //        IsActive = true,
         //    }
         //   );
-            
+
         //    modelBuilder.Entity<IdentityRole>().HasData(
         //    new IdentityRole
         //    {

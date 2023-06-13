@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OMS.Models.Menu>
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Menu List</h3>
+
+<div class="col-md-8 offset-2">
+    <table class="table table-bordered table-striped table-hover table-sm">
+        <thead>
+            <tr style="text-align:center">
+                <th>SL No.</th>
+                <th>
+                    @Html.DisplayName(" Menu Name")
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                        @item.MenuName
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

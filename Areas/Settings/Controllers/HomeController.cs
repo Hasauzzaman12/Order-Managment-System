@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using OMS.Models;
 using System.Diagnostics;
 
@@ -15,7 +16,7 @@ namespace OMS.Areas.Settings.Controllers
         {
             _logger = logger;
         }
-        
+
         [Authorize]
         public IActionResult Index()
         {

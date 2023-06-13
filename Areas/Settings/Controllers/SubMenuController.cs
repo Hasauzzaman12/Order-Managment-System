@@ -89,7 +89,7 @@ namespace OMS.Areas.Settings.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var data = await _subMenu.DetailsData(id);
+            var data = await _subMenu.GetById(id);
 
             return View(data);
         }

@@ -5,6 +5,7 @@ namespace OMS.Interface
     public interface IMainMenu
     {
         Task<IEnumerable<MainMenu>> GetAll();
+        Task<IEnumerable<MainMenu>> MenuList();
 
         Task<MainMenu> CreateData(MainMenu mainMenu);
 

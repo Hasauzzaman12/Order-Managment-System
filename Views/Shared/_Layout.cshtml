@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using OMS.Interface
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IHttpContextAccessor _context
+@inject IMenu _mainmenu
+
+@{
+    var menu = await _mainmenu.GetAll();
+    var roleinfo = _context.HttpContext.Session.GetString("roleName");
+}
+@*
+<h1>@roleinfo</h1>*@
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,13 +22,16 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OMS.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         .brandLogo {
             padding-right: 10px;
         }
+
         .navbgcolor {
             background-color: #003368;
         }
+
         .navdropwon {
             background-color: #003368;
         }
@@ -23,140 +40,45 @@
 
 <body>
     <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 navbgcolor">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 navbgcolor">
             <div class="container">
 
                 <div>
                     <a asp-area="Settings" asp-controller="Module" asp-action="Landing"><i class="fa fa-th" aria-hidden="true" style="font-size:28px; color:white; margin-right: 10px;"></i></a>
                 </div>
 
-                    <a class="navbar-brand text-white" asp-area="Settings" asp-controller="Module" asp-action="Landing">OM System</a>
-                
+                <a class="navbar-brand text-white" asp-area="Settings" asp-controller="Module" asp-action="Landing">ITM System</a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+               
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1 justify-content-center">
+                        @if(roleinfo=="Admin")
+                        {
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link text-white" href="#"id="navbarDropdown" role="button" aria-expanded="false">
-                                Dashboard
-                            </a>
-                            
-                            <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#"id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Admin
-                            </a>
-                            <ul class="dropdown-menu navdropwon" aria-labelledby="navbarDropdown">
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Company" asp-action="Index">Company</a>
-                                </li>
-
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Module" asp-action="Index">Module</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="MainMenu" asp-action="Index">Main Menu</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-                                
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="SubMenu" asp-action="Index">Sub Menu</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Role" asp-action="Index">Role</a>
-                                </li>
-                                
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Account" asp-action="Index">Users</a>
-                                </li>
-
-                            </ul>
-                        </li>
-
+                        }
+                        @foreach (var item in menu.Where(x=>x.ParentId==0))
+                        {
+                           
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                HRM
+                                @item.MenuName
                             </a>
                             <ul class="dropdown-menu navdropwon" aria-labelledby="navbarDropdown">
 
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Department" asp-action="Index">Department</a>
-                                </li>
-
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Designation" asp-action="Index">Designation</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Employee" asp-action="Index">Employees</a>
-                                </li>
-
+                                    @foreach (var submenu in menu.Where(x => x.ParentId == item.MenuId))
+                                    {
+                                    <li class="nav-item">
+                                        <a class="dropdown-item text-white" asp-area="@submenu.AreaName"asp-controller="@submenu.ControllerName"asp-action="@submenu.ActionName">@submenu.MenuName</a>
+                                    </li>
+                                    <hr class="dropdown-divider bg-white"> 
+                                    }
                             </ul>
                         </li>
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Products
-                            </a>
-                            <ul class="dropdown-menu navdropwon" aria-labelledby="navbarDropdown">
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="UoM" asp-action="Index">UoM</a>
-                                </li>
-
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Category" asp-action="Index">Category</a>
-                                </li>
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Orders
-                            </a>
-                            <ul class="dropdown-menu navdropwon" aria-labelledby="navbarDropdown">
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Buyer" asp-action="Index">Buyers</a>
-                                </li>
-
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="Brand" asp-action="Index">Brands</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="OrderType" asp-action="Index">Order Types</a>
-                                </li>
-                                <li><hr class="dropdown-divider"></li>
-
-                                <li class="nav-item">
-                                    <a class="dropdown-item text-white" asp-area="Settings" asp-controller="CsPerson" asp-action="Index">CS Persons</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

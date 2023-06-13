@@ -46,7 +46,7 @@ namespace OMS.Models
 
         [DisplayName("Image Path")]
         public string? ImagePath { get; set; }
-
-        public ICollection<MainMenu>? MainMenus { get; set; }
+        
+        public ICollection<Menu>? Menus { get; set; }
     }
 }

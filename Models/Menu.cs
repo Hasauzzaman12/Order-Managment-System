@@ -1,28 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.SignalR;
 
 namespace OMS.Models
 {
-    public class MainMenu:BaseModel
+    public class Menu:BaseModel
     {
-        public MainMenu()
-        {
-            SubMenus = new HashSet<SubMenu>();
-        }
-
         [Key]
-        public int MainMenuId { get; set; }
+        public int MenuId { get; set; }
 
         [DisplayName("Module")]
         [ForeignKey("Module")]
         public int ModuleId { get; set; }
         public Module? Module { get; set; }
+        
+        [DisplayName("ParentId")]
+        public int ParentId { get; set; }
 
         [Required]
-        [DisplayName("Main Menu Name")]
+        [DisplayName("Menu Name")]
         [MaxLength(20), MinLength(2)]
-        public string? MainMenuName { get; set; }
+        public string? MenuName { get; set; }
 
         [Required]
         [DisplayName("Description")]
@@ -34,16 +33,15 @@ namespace OMS.Models
         [MaxLength(30), MinLength(2)]
         public string? AreaName { get; set; }
 
-        [Required]
-        [DisplayName("Action Name")]
-        [MaxLength(30), MinLength(2)]
-        public string? ActionName { get; set; }
+        [DisplayName("Has Sub Menu")]
+        public bool? HasSubMenu { get; set; }
 
-        [Required]
         [DisplayName("Controller Name")]
         [MaxLength(30), MinLength(2)]
         public string? ControllerName { get; set; }
 
-        public ICollection<SubMenu>? SubMenus { get; set; }
+        [DisplayName("Action Name")]
+        [MaxLength(30), MinLength(2)]
+        public string? ActionName { get; set; }
     }
 }

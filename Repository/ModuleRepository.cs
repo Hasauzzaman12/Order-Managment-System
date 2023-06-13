@@ -37,7 +37,10 @@ namespace OMS.Repository
 
         public async Task<IEnumerable<Module>> GetAll()
         {
-            return await _context.Modules.Where(c=>c.IsActive==true).OrderBy(C=>C.ModuleSerial).ToListAsync();
+            return await _context.Modules
+                .Include(x=>x.Menus)
+                .Where(c=>c.IsActive==true).OrderBy(C=>C.ModuleSerial)
+                .ToListAsync();
         }
 
         public async Task<Module> GetById(int id)

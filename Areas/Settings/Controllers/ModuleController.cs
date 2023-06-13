@@ -8,7 +8,7 @@ using System.Drawing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Hosting;
-using OMS.Migrations;
+//using OMS.Migrations;
 
 namespace OMS.Areas.Settings.Controllers
 {

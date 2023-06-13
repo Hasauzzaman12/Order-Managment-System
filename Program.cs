@@ -39,7 +39,11 @@ builder.Services.AddScoped<IOrderMaster,OrderMasterRepository>();
 builder.Services.AddScoped<IOrderType,OrderTypeRepository>();
 builder.Services.AddScoped<IMainMenu,MainMenuRepository>();
 builder.Services.AddScoped<ISubMenu,SubMenuRepository>();
+builder.Services.AddScoped<IMenu,MenuRepository>();
 
+//Add Login
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {

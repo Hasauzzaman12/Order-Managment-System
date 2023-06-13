@@ -43,7 +43,7 @@ namespace OMS.Areas.Settings.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             ViewData["RoleId"] = new SelectList( _roleManager.Roles.ToList(), "Name", "Name");
 
@@ -71,7 +71,7 @@ namespace OMS.Areas.Settings.Controllers
 
             return View();
         }
-        public async Task<IActionResult> Edit(string id)
+        public IActionResult Edit(string id)
         {
             ViewData["RoleId"] = new SelectList(_roleManager.Roles.ToList(), "Name", "Name");
             var user = _context.ApplicationUsers.FirstOrDefault(c => c.Id == id);
@@ -79,7 +79,7 @@ namespace OMS.Areas.Settings.Controllers
             {
                 return NotFound();
             }
-            return View(user);    
+            return View(user);
         }
 
         [HttpPost]

@@ -1,0 +1,83 @@
+﻿@model OMS.ViewModel.MenuViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create Menu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <span class="text-danger">@ViewBag.Message</span>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Module</label>
+                <select class="form-control" name="ModuleId" id="ModuleId">
+                    <option value="">Select</option>
+                    @foreach (var item in Model.Modules)
+                    {
+                        <option value="@item.ModuleId">@item.ModuleName</option>
+                    }
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Menu</label>
+                <select class="form-control" name="ParentId" id="ParentId">
+                    <option value="">Select</option>
+                    <option value=0>Parent Menu</option>
+                    @foreach (var item in Model.Menus)
+                    {
+                        <option value="@item.MenuId">@item.MenuName</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MenuName" class="control-label"></label>
+                <input asp-for="MenuName" class="form-control" />
+                <span asp-validation-for="MenuName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AreaName" class="control-label"></label>
+                <input asp-for="AreaName" class="form-control" />
+                <span asp-validation-for="AreaName" class="text-danger"></span>
+            </div>  
+            
+            <div class="form-group">
+                <label asp-for="ControllerName" class="control-label"></label>
+                <input asp-for="ControllerName" class="form-control" />
+                <span asp-validation-for="ControllerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ActionName" class="control-label"></label>
+                <input asp-for="ActionName" class="form-control" />
+                <span asp-validation-for="ActionName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
